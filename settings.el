@@ -124,8 +124,7 @@
 
 
 (defun settings-minibuffer-mode-config ()
-    (when(eq major-mode 'minibuffer-mode)
-        (bindings-minibuffer-mode 1)))
+        (bindings-minibuffer-mode 1))
 
 
 (add-hook 'c-mode-hook              'settings-c-mode-config)

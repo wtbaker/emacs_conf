@@ -74,7 +74,7 @@
 
 (define-minor-mode
     bindings-minibuffer-mode
-    "minibufferbasic-mode bindings"
+    "minibuffer-mode bindings"
     nil
     nil
     bindings-minibuffer-mode-keymap)
