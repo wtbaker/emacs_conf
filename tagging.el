@@ -1,7 +1,7 @@
 (setq-default tags-file-name (format "%s/%s" temporary-file-directory ".emacs.root.tags"))
 
 
-(defvar tagging-root-path "~/dev" "The default directory to recursively tag")
+(defvar tagging-root-path (getenv "dev_home") "The default directory to recursively tag")
 
 (defun tagging-update-file-cache ()
     "Refresh the file cache for tagging-root-path"
