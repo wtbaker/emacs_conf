@@ -23,11 +23,12 @@
 (setq-default whitespace-style       '(face lines-tail))
 (global-whitespace-mode              1)
 
-(show-paren-mode      1)
-(menu-bar-mode        0)
-(tool-bar-mode        0)
-(electric-pair-mode   1)
-(electric-indent-mode 1)
+(normal-erase-is-backspace-mode 1)
+(show-paren-mode                1)
+(menu-bar-mode                  0)
+(tool-bar-mode                  0)
+(electric-pair-mode             1)
+(electric-indent-mode           1)
 
 
 (defun settings-c-mode-config ()
