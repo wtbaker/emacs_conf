@@ -13,7 +13,31 @@
     (interactive)
     (compile
         (format
-            "exctags -f %s --languages=C,Make,HTML,Tex -e -R %s"
+            "exctags -f %s --languages=C,C++,Make,HTML,Tex --file-scope=no --c-kinds=+cdefgmnstuv -e -R %s"
             tags-file-name
             (expand-file-name tagging-root-path)))
     (delete-window (get-buffer-window (get-buffer "*compilation*"))))
+
+(defun tagging-search-tags ()
+    "Search for instances of a symbol"
+    (interactive)
+    (if (use-region-p)
+        (tags-search (format "\\<%s\\>" (buffer-substring-no-properties (mark) (point))))
+        (let ((default-tag (find-tag-default)))
+            (if default-tag
+                (tags-search (format "\\<%s\\>" default-tag))
+                (tags-search (format "\\<%s\\>" (read-string "Symbol: ")))))))
+
+(defun tagging-find-tag-now ()
+    "Goto symbol without prompting"
+    (interactive)
+    (let ((default-tag (find-tag-default)))
+        (if default-tag
+            (find-tag default-tag))))
+
+(defun tagging-find-tag-other-window-now ()
+    "Goto symbol in a different window without prompting"
+    (interactive)
+    (let ((default-tag (find-tag-default)))
+        (if default-tag
+            (find-tag-other-window default-tag))))

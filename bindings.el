@@ -12,6 +12,9 @@
 (define-key bindings-c-mode-keymap (kbd "RET")        'align-newline-and-indent)
 (define-key bindings-c-mode-keymap (kbd "<S-return>") 'newline-and-indent)
 (define-key bindings-c-mode-keymap (kbd "<home>")     'editing-smart-home)
+(define-key bindings-c-mode-keymap (kbd "M-.")        'tagging-find-tag-now)
+(define-key bindings-c-mode-keymap (kbd "C-.")        'tagging-find-tag-other-window-now)
+(define-key bindings-c-mode-keymap (kbd "C->")        'tagging-search-tags)
 
 (define-minor-mode
     bindings-c-mode
@@ -34,6 +37,9 @@
 (define-key bindings-dev-mode-keymap (kbd "<backtab>")  'editing-unindent)
 (define-key bindings-dev-mode-keymap (kbd "RET")        'newline-and-indent)
 (define-key bindings-dev-mode-keymap (kbd "<home>")     'editing-smart-home)
+(define-key bindings-dev-mode-keymap (kbd "M-.")        'tagging-find-tag-now)
+(define-key bindings-dev-mode-keymap (kbd "C-.")        'tagging-find-tag-other-window-now)
+(define-key bindings-dev-mode-keymap (kbd "C->")        'tagging-search-tags)
 
 (define-minor-mode
     bindings-dev-mode
@@ -54,6 +60,9 @@
 (define-key bindings-basic-mode-keymap (kbd "<C-tab>")   'editing-indent)
 (define-key bindings-basic-mode-keymap (kbd "<backtab>") 'editing-unindent)
 (define-key bindings-basic-mode-keymap (kbd "<home>")    'editing-smart-home)
+(define-key bindings-basic-mode-keymap (kbd "M-.")       'tagging-find-tag-now)
+(define-key bindings-basic-mode-keymap (kbd "C-.")       'tagging-find-tag-other-window-now)
+(define-key bindings-basic-mode-keymap (kbd "C->")       'tagging-search-tags)
 
 (define-minor-mode
     bindings-basic-mode
@@ -69,7 +78,6 @@
 (define-key bindings-minibuffer-mode-keymap (kbd "C-\\ u")   'tagging-update-tags)
 (define-key bindings-minibuffer-mode-keymap (kbd "C-\\ f")   'tagging-update-file-cache)
 (define-key bindings-minibuffer-mode-keymap (kbd "C-\\ k")   'buffers-close-all)
-(define-key bindings-minibuffer-mode-keymap (kbd "C-\\ s")   'tags-apropos)
 (define-key bindings-minibuffer-mode-keymap (kbd "C-\\ TAB") 'file-cache-minibuffer-complete)
 
 (define-minor-mode
