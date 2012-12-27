@@ -25,3 +25,8 @@
         (beginning-of-line-text)))
 
 (put 'editing-smart-home 'CUA 'move)
+
+(defun editing-region-length ()
+    "Compute the length of a region"
+    (interactive)
+    (message (format "%d" (- (region-end) (region-beginning)))))
