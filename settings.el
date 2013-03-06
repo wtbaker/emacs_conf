@@ -54,14 +54,65 @@
         (set-buffer-file-coding-system 'utf-8-unix nil 1)
         (bindings-dev-mode             1)
 
-        (set (make-local-variable 'whitespace-style) '(tabs spaces space-mark tab-mark face lines-tail))
-        (whitespace-mode                             1)
+        (set
+            (make-local-variable 'whitespace-style)
+            '(tabs spaces space-mark tab-mark face lines-tail))
+        (whitespace-mode 1)
 
         (setq tab-width             4)
         (setq require-final-newline 'visit-save)))
 
 (defun settings-gmake-mode-sanitize ()
     (when(eq major-mode 'makefile-gmake-mode)
+        (sanitize-explicit-utf-8-unix)))
+
+
+(defun settings-scala-mode-config ()
+    (when(eq major-mode 'scala-mode)
+        (set-buffer-file-coding-system 'utf-8-unix nil 1)
+        (bindings-dev-mode             1)
+
+        (setq tab-width             4)
+        (setq require-final-newline 'visit-save)))
+
+(defun settings-scala-mode-sanitize ()
+    (when(eq major-mode 'scala-mode)
+        (sanitize-explicit-utf-8-unix)))
+
+
+(defun settings-java-mode-config ()
+    (when(eq major-mode 'java-mode)
+        (set-buffer-file-coding-system 'utf-8-unix nil 1)
+        (bindings-dev-mode             1)
+        (styles-c-mode)
+
+        (setq c-syntactic-indentation 1)
+        (setq c-basic-offset          4)
+        (setq tab-width               4)
+        (setq indent-tabs-mode        nil)
+        (setq c-tab-always-indent     1)
+        (setq require-final-newline   'visit-save)))
+
+(defun settings-java-mode-sanitize ()
+    (when(eq major-mode 'java-mode)
+        (sanitize-explicit-utf-8-unix)))
+
+
+(defun settings-javascript-mode-config ()
+    (when(eq major-mode 'javascript-mode)
+        (set-buffer-file-coding-system 'utf-8-unix nil 1)
+        (bindings-dev-mode             1)
+        (styles-c-mode)
+
+        (setq c-syntactic-indentation 1)
+        (setq c-basic-offset          4)
+        (setq tab-width               4)
+        (setq indent-tabs-mode        nil)
+        (setq c-tab-always-indent     1)
+        (setq require-final-newline   'visit-save)))
+
+(defun settings-javascript-mode-sanitize ()
+    (when(eq major-mode 'javascript-mode)
         (sanitize-explicit-utf-8-unix)))
 
 
@@ -115,8 +166,10 @@
         (set-buffer-file-coding-system 'utf-8-unix nil 1)
         (bindings-basic-mode           1)
 
-        (set (make-local-variable 'whitespace-style) '(tabs spaces space-mark tab-mark face lines-tail))
-        (whitespace-mode                             1)
+        (set
+            (make-local-variable 'whitespace-style)
+            '(tabs spaces space-mark tab-mark face lines-tail))
+        (whitespace-mode 1)
 
         (setq tab-width             4)))
 
@@ -130,6 +183,9 @@
 
 (add-hook 'c-mode-hook              'settings-c-mode-config)
 (add-hook 'makefile-gmake-mode-hook 'settings-gmake-mode-config)
+(add-hook 'scala-mode-hook          'settings-scala-mode-config)
+(add-hook 'java-mode-hook           'settings-java-mode-config)
+(add-hook 'javascript-mode-hook     'settings-javascript-mode-config)
 (add-hook 'sgml-mode-hook           'settings-sgml-mode-config)
 (add-hook 'latex-mode-hook          'settings-latex-mode-config)
 (add-hook 'lisp-mode-hook           'settings-lisp-mode-config)
@@ -138,6 +194,9 @@
 
 (add-hook 'after-change-major-mode-hook 'settings-c-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-gmake-mode-sanitize)
+(add-hook 'after-change-major-mode-hook 'settings-scala-mode-sanitize)
+(add-hook 'after-change-major-mode-hook 'settings-java-mode-sanitize)
+(add-hook 'after-change-major-mode-hook 'settings-javascript-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-sgml-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-latex-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-lisp-mode-sanitize)
@@ -145,6 +204,9 @@
 
 (add-hook 'before-save-hook 'settings-c-mode-sanitize)
 (add-hook 'before-save-hook 'settings-gmake-mode-sanitize)
+(add-hook 'before-save-hook 'settings-scala-mode-sanitize)
+(add-hook 'before-save-hook 'settings-java-mode-sanitize)
+(add-hook 'before-save-hook 'settings-javascript-mode-sanitize)
 (add-hook 'before-save-hook 'settings-sgml-mode-sanitize)
 (add-hook 'before-save-hook 'settings-latex-mode-sanitize)
 (add-hook 'before-save-hook 'settings-lisp-mode-sanitize)
@@ -158,12 +220,17 @@
                                    ("\\.cxx$"   . c-mode)
                                    ("\\.h$"     . c-mode)
                                    ("\\.hpp$"   . c-mode)
-                                   ("\\.js$"    . c-mode)
                                    ("\\.cs$"    . c-mode)
 
                                    ("\\.mk$"    . makefile-gmake-mode)
                                    ("Makefile$" . makefile-gmake-mode)
                                    ("makefile$" . makefile-gmake-mode)
+
+                                   ("\\.scala$" . scala-mode)
+
+                                   ("\\.java$" . java-mode)
+
+                                   ("\\.js$"    . javascript-mode)
 
                                    ("\\.html$"   . sgml-mode)
                                    ("\\.htm$"    . sgml-mode)
