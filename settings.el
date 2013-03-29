@@ -30,6 +30,8 @@
 (electric-pair-mode             1)
 (electric-indent-mode           1)
 
+(put 'downcase-region 'disabled nil)
+
 
 (defun settings-c-mode-config ()
     (when(eq major-mode 'c-mode)
