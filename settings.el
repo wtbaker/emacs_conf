@@ -28,8 +28,8 @@
 (global-linum-mode                   1)
 
 (setq-default compilation-scroll-output 1)
-;;(setq-default compile-command "custom compile command")
-;;(add-to-list 'compilation-search-path "root compile directory")
+(setq-default compile-command "make -rR -j8 --quiet -C/home/PATH_TO_DEV show_progress=1")
+(add-to-list 'compilation-search-path "/home/PATH_TO_DEV")
 (setq-default next-error-follow-minor-mode 1)
 
 (normal-erase-is-backspace-mode 1)
