@@ -12,20 +12,29 @@
 (setq auto-save-file-name-transforms `((".*"   ,temporary-file-directory 1)))
 (setq auto-save-list-file-prefix     temporary-file-directory)
 
+
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (cua-mode                                1)
 (transient-mark-mode                     1)
 (setq-default cua-auto-tabify-rectangles nil)
 (setq-default cua-keep-region-after-copy 1)
+(setq-default cursor-type 'bar)
 
 (setq-default whitespace-line-column nil)
 (setq-default whitespace-style       '(face lines-tail))
 (global-whitespace-mode              1)
+(global-linum-mode                   1)
+
+(setq-default compilation-scroll-output 1)
+;;(setq-default compile-command "custom compile command")
+;;(add-to-list 'compilation-search-path "root compile directory")
+(setq-default next-error-follow-minor-mode 1)
 
 (normal-erase-is-backspace-mode 1)
 (show-paren-mode                1)
-(menu-bar-mode                  0)
+(menu-bar-mode                  1)
 (tool-bar-mode                  0)
 (electric-pair-mode             1)
 (electric-indent-mode           1)
@@ -100,8 +109,8 @@
         (sanitize-explicit-utf-8-unix)))
 
 
-(defun settings-javascript-mode-config ()
-    (when(eq major-mode 'javascript-mode)
+(defun settings-js-mode-config ()
+    (when(eq major-mode 'js-mode)
         (set-buffer-file-coding-system 'utf-8-unix nil 1)
         (bindings-dev-mode             1)
         (styles-c-mode)
@@ -113,8 +122,8 @@
         (setq c-tab-always-indent     1)
         (setq require-final-newline   'visit-save)))
 
-(defun settings-javascript-mode-sanitize ()
-    (when(eq major-mode 'javascript-mode)
+(defun settings-js-mode-sanitize ()
+    (when(eq major-mode 'js-mode)
         (sanitize-explicit-utf-8-unix)))
 
 
@@ -187,7 +196,7 @@
 (add-hook 'makefile-gmake-mode-hook 'settings-gmake-mode-config)
 (add-hook 'scala-mode-hook          'settings-scala-mode-config)
 (add-hook 'java-mode-hook           'settings-java-mode-config)
-(add-hook 'javascript-mode-hook     'settings-javascript-mode-config)
+(add-hook 'js-mode-hook             'settings-js-mode-config)
 (add-hook 'sgml-mode-hook           'settings-sgml-mode-config)
 (add-hook 'latex-mode-hook          'settings-latex-mode-config)
 (add-hook 'lisp-mode-hook           'settings-lisp-mode-config)
@@ -198,7 +207,7 @@
 (add-hook 'after-change-major-mode-hook 'settings-gmake-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-scala-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-java-mode-sanitize)
-(add-hook 'after-change-major-mode-hook 'settings-javascript-mode-sanitize)
+(add-hook 'after-change-major-mode-hook 'settings-js-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-sgml-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-latex-mode-sanitize)
 (add-hook 'after-change-major-mode-hook 'settings-lisp-mode-sanitize)
@@ -208,7 +217,7 @@
 (add-hook 'before-save-hook 'settings-gmake-mode-sanitize)
 (add-hook 'before-save-hook 'settings-scala-mode-sanitize)
 (add-hook 'before-save-hook 'settings-java-mode-sanitize)
-(add-hook 'before-save-hook 'settings-javascript-mode-sanitize)
+(add-hook 'before-save-hook 'settings-js-mode-sanitize)
 (add-hook 'before-save-hook 'settings-sgml-mode-sanitize)
 (add-hook 'before-save-hook 'settings-latex-mode-sanitize)
 (add-hook 'before-save-hook 'settings-lisp-mode-sanitize)
@@ -224,6 +233,8 @@
                                    ("\\.hpp$"   . c-mode)
                                    ("\\.cs$"    . c-mode)
 
+                                   ("\\.dart$"  . dart-mode)
+
                                    ("\\.mk$"    . makefile-gmake-mode)
                                    ("Makefile$" . makefile-gmake-mode)
                                    ("makefile$" . makefile-gmake-mode)
@@ -232,7 +243,7 @@
 
                                    ("\\.java$" . java-mode)
 
-                                   ("\\.js$"    . javascript-mode)
+                                   ("\\.js$"    . js-mode)
 
                                    ("\\.html$"   . sgml-mode)
                                    ("\\.htm$"    . sgml-mode)

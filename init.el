@@ -13,3 +13,4 @@
 (load-library "settings")
 (load-library "display")
 (load-library "bindings")
+(load-library "dart-mode")
